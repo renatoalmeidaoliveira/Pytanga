@@ -14,6 +14,12 @@ Welcome to Pytanga's documentation!
 
         With that architecture, it is possible to define the YANG models' logic and syntax tests decoupled of the payload generation.
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Using Pytanga
+
+   quickstart
+   newmodel
 
 .. toctree::
    :caption: MODULES:
