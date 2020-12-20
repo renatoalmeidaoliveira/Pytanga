@@ -1,0 +1,8 @@
+OpenConfig
+================================
+
+.. toctree::
+   :glob:
+
+   OpenConfig/*
+
