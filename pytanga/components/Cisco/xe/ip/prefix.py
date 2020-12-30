@@ -41,16 +41,15 @@ class prefixComponent(AbstractComponent):
         attributes = {}
 
         attributes['no'] = str(seq)
-        if(action=='permit' or action=='deny'):
+        if(action == 'permit' or action == 'deny'):
             attributes['action'] = action
         else:
             raise prefixSyntaxError("Incorrect action")
         attributes['ip'] = network
         if(ge):
-            attributes['ge'] = ge
+            attributes['ge'] = str(ge)
         if(le):
-            attributes['le'] = le
-
+            attributes['le'] = str(le)
 
         return attributes
 
@@ -75,4 +74,5 @@ class prefixComponent(AbstractComponent):
         for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
+
 
