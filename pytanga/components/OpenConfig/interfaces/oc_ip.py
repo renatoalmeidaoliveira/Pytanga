@@ -1,12 +1,13 @@
 from pytanga.components import AbstractComponent
 
+
 class oc_ipComponent(AbstractComponent):
 
-    def __init__(self , version):
+    def __init__(self, version):
         self._xmlns = {}
         self.attributes = {}
         self.parent_xmlns = {
-            "xmlns:oc-ip"  : "http://openconfig.net/yang/interfaces/ip"
+            "xmlns:oc-ip": "http://openconfig.net/yang/interfaces/ip"
         }
         self._children: List[AbstractComponent] = []
         self.childrenData = []
@@ -16,7 +17,7 @@ class oc_ipComponent(AbstractComponent):
             self.tag = 'oc-ip:ipv6'
 
     @property
-    def parent(self) :
+    def parent(self):
         return self._parent
 
     @parent.setter
@@ -30,7 +31,6 @@ class oc_ipComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -52,6 +52,6 @@ class oc_ipComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)

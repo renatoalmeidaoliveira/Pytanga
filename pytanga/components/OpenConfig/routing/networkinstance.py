@@ -1,16 +1,27 @@
 from pytanga.components import AbstractComponent
 
+
 class networkInstanceComponent(AbstractComponent):
 
-    def __init__(self, name='default', net_type=None, enabled=None, description=None, router_id=None, route_distinguisher=None):
+    def __init__(self,
+                 name='default',
+                 net_type=None,
+                 enabled=None,
+                 description=None,
+                 router_id=None,
+                 route_distinguisher=None):
         self._xmlns = {}
         self.attributes = {}
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
-        self.attributes = self.setAttributes(name, net_type, enabled, description, router_id, route_distinguisher)
+        self.attributes = self.setAttributes(name,
+                                             net_type,
+                                             enabled,
+                                             description,
+                                             router_id,
+                                             route_distinguisher)
         self.childrenData = []
         self.tag = 'network-instance'
-
 
     @property
     def xmlns(self):
@@ -20,9 +31,15 @@ class networkInstanceComponent(AbstractComponent):
     def xmlns(self, xmlns):
         self._xmlns = xmlns
 
-    def setAttributes(self, name, net_type, enabled, description, router_id, route_distinguisher):
+    def setAttributes(self,
+                      name,
+                      net_type,
+                      enabled,
+                      description,
+                      router_id,
+                      route_distinguisher):
         attributes = {
-            'name' : name
+            'name': name
         }
         attributes['config'] = {}
         if(net_type):
@@ -57,7 +74,7 @@ class networkInstanceComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

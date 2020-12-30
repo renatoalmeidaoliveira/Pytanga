@@ -1,15 +1,15 @@
 from pytanga.components import AbstractComponent
 
+
 class neighborPrefixListComponent(AbstractComponent):
 
-    def __init__(self , inout , name ):
+    def __init__(self, inout, name):
         self._xmlns = {}
         self.attributes = self.setAttributes(inout, name)
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
-        self.tag = 'prefix-list'
-        
+        self.tag = 'prefix-list'       
 
     @property
     def xmlns(self):
@@ -19,10 +19,10 @@ class neighborPrefixListComponent(AbstractComponent):
     def xmlns(self, xmlns):
         self._xmlns = xmlns
 
-    def setAttributes(self, inout , name):
+    def setAttributes(self, inout, name):
         attributes = {
-            'inout' : inout,
-            'prefix-list-name' : name
+            'inout': inout,
+            'prefix-list-name': name
         }
         return attributes
 

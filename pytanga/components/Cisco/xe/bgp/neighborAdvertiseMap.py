@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class neighborAdvertiseMapComponent(AbstractComponent):
 
     def __init__(self , name, exist_map=None, non_exist_map=None):
@@ -10,7 +11,6 @@ class neighborAdvertiseMapComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'name'
         
-
     @property
     def xmlns(self):
         return self._xmlns
@@ -49,4 +49,3 @@ class neighborAdvertiseMapComponent(AbstractComponent):
         for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
-

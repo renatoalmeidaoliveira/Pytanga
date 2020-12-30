@@ -1,15 +1,22 @@
 from pytanga.components import AbstractComponent
 
+
 class protocolComponent(AbstractComponent):
 
-    def __init__(self, identifier, name=None, enabled=None, default_metric=None):
+    def __init__(self,
+                 identifier,
+                 name=None,
+                 enabled=None,
+                 default_metric=None):
         self._xmlns = {}
-        self.attributes = self.setAttributes(identifier, name, enabled, default_metric)
+        self.attributes = self.setAttributes(identifier,
+                                             name,
+                                             enabled,
+                                             default_metric)
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'protocol'
-
 
     @property
     def xmlns(self):
@@ -24,17 +31,17 @@ class protocolComponent(AbstractComponent):
         if(name):
             attributes['name'] = name
         attributes['identifier'] = {
-            'keys' : {
-                'xmlns:oc-pol-types' : 'http://openconfig.net/yang/policy-types'
+            'keys': {
+                'xmlns:oc-pol-types': 'http://openconfig.net/yang/policy-types'
             },
-            'value' : f"oc-pol-types:{identifier}"
+            'value': f"oc-pol-types:{identifier}"
         }
         attributes['config'] = {}
-        attributes['config']['identifier'] =  {
-            'keys' : {
-                'xmlns:oc-pol-types' : 'http://openconfig.net/yang/policy-types'
+        attributes['config']['identifier'] = {
+            'keys': {
+                'xmlns:oc-pol-types': 'http://openconfig.net/yang/policy-types'
             },
-            'value' : f"oc-pol-types:{identifier}"
+            'value': f"oc-pol-types:{identifier}"
         }
         attributes['config']['name'] = name
         if(enabled):
@@ -44,7 +51,6 @@ class protocolComponent(AbstractComponent):
         if(attributes['config'] == {}):
             del attributes['config']
         return attributes
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -64,6 +70,6 @@ class protocolComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)

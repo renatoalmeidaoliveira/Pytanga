@@ -17,10 +17,10 @@ def createIPInterface(name,
                       sub_index=0,
                       sub_desc=None):
     ifaceData = {
-        'name' : name,
-        'if_type' : if_type,
+        'name': name,
+        'if_type': if_type,
         }
-    if(if_description) :
+    if(if_description):
         ifaceData['if_description'] = if_description
     if(if_mtu):
         ifaceData['if_mtu'] = if_mtu
@@ -30,15 +30,16 @@ def createIPInterface(name,
     iface = interfaceComponent(**ifaceData)
     ifaceSubs = subinterfacesComponent()
     subData = {
-        'index' : sub_index
+        'index': sub_index
     }
-    if(sub_desc) :
+    if(sub_desc):
         subData['description'] = sub_desc
     
-    ifaceSub = subinterfaceComponent(**subData )
+    ifaceSub = subinterfaceComponent(**subData)
     ifaceIP = oc_ipComponent(version=ip_version)
     ifaceIPAddrs = oc_ipAddressesComponent()
-    ifaceIPAddr = oc_ipAddressComponent(address=address , prefix_length=prefix_length)
+    ifaceIPAddr = oc_ipAddressComponent(address=address,
+                                        prefix_length=prefix_length)
 
     ifaceIPAddrs.add(ifaceIPAddr)
     ifaceIP.add(ifaceIPAddrs)

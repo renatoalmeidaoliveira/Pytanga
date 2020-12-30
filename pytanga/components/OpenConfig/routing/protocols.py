@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class protocolsComponent(AbstractComponent):
 
     def __init__(self):
@@ -9,7 +10,6 @@ class protocolsComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'protocols'
-
 
     @property
     def xmlns(self):
@@ -37,7 +37,7 @@ class protocolsComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

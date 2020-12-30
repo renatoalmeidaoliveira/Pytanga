@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class addressFamilyVRFComponent(AbstractComponent):
 
     def __init__(self, with_vrf):
@@ -13,7 +14,6 @@ class addressFamilyVRFComponent(AbstractComponent):
         else:
             self.tag = 'no-vrf'
         
-
     @property
     def xmlns(self):
         return self._xmlns

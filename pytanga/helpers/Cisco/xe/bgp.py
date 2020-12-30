@@ -66,9 +66,11 @@ class ConfigureBGP():
             'vpnv6': ['flowspec',  'multicast', 'unicast']
         }
         if(afi_name not in types.keys()):
-            raise ConfigureBGPError(f"unknown afi_name must be in {types.keys()}")
+            raise ConfigureBGPError(
+                f"unknown afi_name must be in {types.keys()}")
             if(safi_name not in types[afi_name]):
-                raise ConfigureBGPError(f"unknown safi_name must be in {types[afi_name]}")
+                raise ConfigureBGPError(
+                    f"unknown safi_name must be in {types[afi_name]}")
         afiKey = f"{afi_name}-{safi_name}"
         if(afiKey not in self.afis_safic_types):
             if(afiKey == 'ipv4-unicast' or afiKey == 'ipv4-multicast'):
@@ -209,7 +211,12 @@ class ConfigureBGP():
             self.afis_safic_types[afi_safi]['neighbors'][nei_address]['route-maps'].append(
                 routeKey)
 
-    def addAfiSafiNetwork(self, afi_safi, network, mask=None, route_map=None, backdoor=None):
+    def addAfiSafiNetwork(self,
+                          afi_safi,
+                          network,
+                          mask=None,
+                          route_map=None,
+                          backdoor=None):
         if(afi_safi not in self.afis_safic_types):
             raise ConfigureBGPError(
                 "Address Family not created. Create First with addAfi_Safi()")

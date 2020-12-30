@@ -1,8 +1,13 @@
 from pytanga.components import AbstractComponent
 
+
 class staticComponent(AbstractComponent):
 
-    def __init__(self, prefix, set_tag=None, description=None, operation=None ):
+    def __init__(self,
+                 prefix,
+                 set_tag=None,
+                 description=None,
+                 operation=None):
         self._xmlns = {}
         if(operation):
             self._xmlns['operation'] = operation
@@ -11,7 +16,6 @@ class staticComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'static'
-
 
     @property
     def xmlns(self):
@@ -23,7 +27,7 @@ class staticComponent(AbstractComponent):
 
     def setAttributes(self, prefix, set_tag, description):
         attributes = {
-            'prefix' : prefix
+            'prefix': prefix
         }
         attributes['config'] = {}
         attributes['config']['prefix'] = prefix
@@ -34,7 +38,6 @@ class staticComponent(AbstractComponent):
         if(attributes['config'] == {}):
             del attributes['config']
         return attributes
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -54,7 +57,7 @@ class staticComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

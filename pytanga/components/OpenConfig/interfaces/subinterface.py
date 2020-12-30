@@ -1,16 +1,15 @@
 from pytanga.components import AbstractComponent
 
+
 class subinterfaceComponent(AbstractComponent):
 
     def __init__(self, index, description=None):
         self.parent_xmlns = {}
         self._xmlns = {}
         self._children: List[AbstractComponent] = []
-        self.attributes = self.setAttributes( index , description )
+        self.attributes = self.setAttributes(index, description)
         self.tag = 'subinterface'
         self.childrenData = []
-
-
 
     @property
     def xmlns(self):
@@ -22,11 +21,11 @@ class subinterfaceComponent(AbstractComponent):
 
     def setAttributes(self, index, description):
         attributes = {
-            'index' : str(index)
+            'index': str(index)
         }
         if(description):
             attributes['config'] = {
-                'description' : description
+                'description': description
             }
         return attributes
 
@@ -48,7 +47,7 @@ class subinterfaceComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

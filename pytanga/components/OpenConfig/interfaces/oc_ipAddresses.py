@@ -1,8 +1,9 @@
 from pytanga.components import AbstractComponent
 
+
 class oc_ipAddressesComponent(AbstractComponent):
 
-    def __init__(self ):
+    def __init__(self):
         self._xmlns = {}
         self.attributes = {}
         self.parent_xmlns = {}
@@ -11,7 +12,7 @@ class oc_ipAddressesComponent(AbstractComponent):
         self.tag = 'oc-ip:addresses'
 
     @property
-    def parent(self) :
+    def parent(self):
         return self._parent
 
     @parent.setter
@@ -25,7 +26,6 @@ class oc_ipAddressesComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -47,7 +47,7 @@ class oc_ipAddressesComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

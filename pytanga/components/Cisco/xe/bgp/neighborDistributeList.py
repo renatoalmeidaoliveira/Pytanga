@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class neighborDistributeListComponent(AbstractComponent):
 
     def __init__(self , inout , name ):
@@ -10,7 +11,6 @@ class neighborDistributeListComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'distribute-list'
         
-
     @property
     def xmlns(self):
         return self._xmlns
@@ -47,4 +47,3 @@ class neighborDistributeListComponent(AbstractComponent):
         for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
-

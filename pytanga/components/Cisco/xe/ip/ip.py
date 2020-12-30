@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class ipComponent(AbstractComponent):
 
     def __init__(self):
@@ -9,8 +10,7 @@ class ipComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'ip'
-        
-
+   
     @property
     def xmlns(self):
         return self._xmlns

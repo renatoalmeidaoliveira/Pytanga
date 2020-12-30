@@ -1,18 +1,25 @@
 from pytanga.components import AbstractComponent
 
+
 class switchedVlanComponent(AbstractComponent):
 
-    def __init__(self, interface_mode=None , native_vlan=None, access_vlan=None, trunk_vlans=None):
+    def __init__(self,
+                 interface_mode=None,
+                 native_vlan=None,
+                 access_vlan=None,
+                 trunk_vlans=None):
         self.parent_xmlns = {
-            'xmlns' : 'http://openconfig.net/yang/vlan',
+            'xmlns': 'http://openconfig.net/yang/vlan',
         }
         self._xmlns = {}
         self._children: List[AbstractComponent] = []
-        self.attributes = self.setAttributes(interface_mode, native_vlan, access_vlan, trunk_vlans)
+        self.attributes = self.setAttributes(
+                                            interface_mode,
+                                            native_vlan,
+                                            access_vlan,
+                                            trunk_vlans)
         self.tag = 'switched-vlan'
         self.childrenData = []
-
-
 
     @property
     def xmlns(self):
@@ -22,7 +29,11 @@ class switchedVlanComponent(AbstractComponent):
     def xmlns(self, xmlns):
         self._xmlns = xmlns
 
-    def setAttributes(self, interface_mode, native_vlan, access_vlan, trunk_vlans):
+    def setAttributes(self,
+                      interface_mode,
+                      native_vlan,
+                      access_vlan,
+                      trunk_vlans):
         attributes = {}
         attributes['config'] = {}
         if(interface_mode):
@@ -55,7 +66,7 @@ class switchedVlanComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

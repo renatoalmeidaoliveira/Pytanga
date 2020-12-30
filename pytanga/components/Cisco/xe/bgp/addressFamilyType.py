@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class addressFamilyTypeSyntaxError(Exception):
     pass
 
@@ -23,9 +24,11 @@ class addressFamilyTypeComponent(AbstractComponent):
             'vpnv6': ['flowspec',  'multicast', 'unicast']
         }
         if(afi_name not in types.keys()):
-            raise addressFamilyTypeSyntaxError(f"afi_name: {afi_name} not allowed. Must be one of {types}")
+            raise addressFamilyTypeSyntaxError(
+                f"afi_name: {afi_name} not allowed. Must be one of {types}")
             if(safi_name not in types[afi_name]):
-                raise addressFamilyTypeSyntaxError(f"safi_name: {safi_name} not allowed. Must be one of {types[afi_name]}")
+                raise addressFamilyTypeSyntaxError(
+                    f"safi_name: {safi_name} not allowed. Must be one of {types[afi_name]}")
         self.tag = afi_name
 
     @property

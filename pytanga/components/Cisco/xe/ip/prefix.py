@@ -1,7 +1,9 @@
 from pytanga.components import AbstractComponent
 
+
 class prefixSyntaxError(Exception):
     pass
+
 
 class prefixComponent(AbstractComponent):
 
@@ -37,16 +39,17 @@ class prefixComponent(AbstractComponent):
                       ge,
                       le):
         attributes = {}
+
         attributes['no'] = str(seq)
         if(action=='permit' or action=='deny'):
-            attributes[action] = {}
+            attributes['action'] = action
         else:
             raise prefixSyntaxError("Incorrect action")
-        attributes[action]['ip'] = network
+        attributes['ip'] = network
         if(ge):
-            attributes[action]['ge'] = ge
+            attributes['ge'] = ge
         if(le):
-            attributes[action]['le'] = le
+            attributes['le'] = le
 
 
         return attributes
@@ -72,3 +75,4 @@ class prefixComponent(AbstractComponent):
         for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
+

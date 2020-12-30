@@ -25,19 +25,19 @@ class peerGroupComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         neighbor = neighborComponent(name,
-                                remote_as,
-                                cluster_id,
-                                description,
-                                disable_connected_check,
-                                ebgp_multihop,
-                                password,
-                                shutdown,
-                                keepalive_interval,
-                                holdtime,
-                                minimum_neighbor_hold,
-                                ttl_security,
-                                update_source,
-                                version)
+                                     remote_as,
+                                     cluster_id,
+                                     description,
+                                     disable_connected_check,
+                                     ebgp_multihop,
+                                     password,
+                                     shutdown,
+                                     keepalive_interval,
+                                     holdtime,
+                                     minimum_neighbor_hold,
+                                     ttl_security,
+                                     update_source,
+                                     version)
         self.add(neighbor)
         self.tag = 'peer-group'
 

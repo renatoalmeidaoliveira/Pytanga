@@ -1,10 +1,15 @@
 from pytanga.components import AbstractComponent
 
+
 class networkComponent(AbstractComponent):
 
-    def __init__(self, network , mask=None, route_map=None, backdoor=None):
+    def __init__(self, network, mask=None, route_map=None, backdoor=None):
         self._xmlns = {}
-        self.attributes = self.setAttributes(network , mask, route_map, backdoor)
+        self.attributes = self.setAttributes(
+            network,
+            mask,
+            route_map,
+            backdoor)
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
@@ -18,7 +23,11 @@ class networkComponent(AbstractComponent):
     def xmlns(self, xmlns):
         self._xmlns = xmlns
 
-    def setAttributes(self, network , mask, route_map, backdoor):
+    def setAttributes(self,
+                      network,
+                      mask,
+                      route_map,
+                      backdoor):
         attributes = {}
         data = {}
         if(route_map):

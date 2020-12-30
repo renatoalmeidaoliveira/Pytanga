@@ -4,10 +4,10 @@ from pytanga.components import AbstractComponent
 class networkComponent(AbstractComponent):
 
     def __init__(self,
-                  network,
-                  wildcard_mask,
-                  area=None
-                  ):
+                 network,
+                 wildcard_mask,
+                 area=None
+                 ):
         self._xmlns = {}
         self.attributes = self.setAttributes(network, wildcard_mask, area)
         self.parent_xmlns = {}
@@ -31,9 +31,8 @@ class networkComponent(AbstractComponent):
         attributes['ip'] = ip
         attributes['mask'] = wildcard_mask
         if((area) or (area == 0)):
-          attributes['area'] = str(area)
+            attributes['area'] = str(area)
        
-
         return attributes
 
     def add(self, component) -> None:

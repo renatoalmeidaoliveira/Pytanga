@@ -4,9 +4,9 @@ from pytanga.components import AbstractComponent
 class areaComponent(AbstractComponent):
 
     def __init__(self,
-                  area_id,
-                  default_cost=None,
-                  ):
+                 area_id,
+                 default_cost=None,
+                 ):
         self._xmlns = {}
         self.attributes = self.setAttributes(area_id, default_cost)
         self.parent_xmlns = {}
@@ -28,9 +28,8 @@ class areaComponent(AbstractComponent):
         attributes = {}
         attributes['area-id'] = area_id
         if(default_cost):
-          attributes['default-cost'] = str(default_cost)
+            attributes['default-cost'] = str(default_cost)
        
-
         return attributes
 
     def add(self, component) -> None:

@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class nexthopComponent(AbstractComponent):
 
     def __init__(self, index, next_hop=None, metric=None, recurse=None):
@@ -9,7 +10,6 @@ class nexthopComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'next-hop'
-
 
     @property
     def xmlns(self):
@@ -21,7 +21,7 @@ class nexthopComponent(AbstractComponent):
 
     def setAttributes(self, index, next_hop, metric, recurse):
         attributes = {
-            'index' : index,
+            'index': index,
         }
         attributes['config'] = {}
         attributes['config']['index'] = index
@@ -34,7 +34,6 @@ class nexthopComponent(AbstractComponent):
         if(attributes['config'] == {}):
             del attributes['config']
         return attributes
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -54,6 +53,6 @@ class nexthopComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)

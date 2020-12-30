@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class addressFamiliesComponent(AbstractComponent):
 
     def __init__(self):
@@ -10,7 +11,6 @@ class addressFamiliesComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'address-family'
         
-
     @property
     def xmlns(self):
         return self._xmlns

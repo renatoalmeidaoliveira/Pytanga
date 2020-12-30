@@ -68,7 +68,8 @@ class ConfigurePrefixList():
                 self.prefixes[seq] = prefix
                 self.prefixlist.add(prefix)
             else:
-                raise ConfigurePrefixListError("Network or Seq already configured")
+                raise ConfigurePrefixListError(
+                    "Network or Seq already configured")
 
     def getPrefixList(self):
         """

@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class routemapComponent(AbstractComponent):
 
     def __init__(self , name):
@@ -10,7 +11,6 @@ class routemapComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'route-map'
         
-
     @property
     def xmlns(self):
         return self._xmlns

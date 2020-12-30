@@ -1,17 +1,17 @@
 from pytanga.components import AbstractComponent
 
+
 class nativeComponent(AbstractComponent):
 
     def __init__(self):
         self._xmlns = {
-            'xmlns' : "http://cisco.com/ns/yang/Cisco-IOS-XE-native" ,
+            'xmlns': "http://cisco.com/ns/yang/Cisco-IOS-XE-native",
         }
         self.attributes = {}
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'native'
-
 
     @property
     def xmlns(self):
@@ -20,8 +20,6 @@ class nativeComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -44,4 +42,3 @@ class nativeComponent(AbstractComponent):
         for child in  self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
-

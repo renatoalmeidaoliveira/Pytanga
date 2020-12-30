@@ -1,8 +1,9 @@
 from pytanga.components import AbstractComponent
 
+
 class neighborRouteMapComponent(AbstractComponent):
 
-    def __init__(self , inout , name ):
+    def __init__(self, inout, name):
         self._xmlns = {}
         self.attributes = self.setAttributes(inout, name)
         self.parent_xmlns = {}
@@ -10,7 +11,6 @@ class neighborRouteMapComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'route-map'
         
-
     @property
     def xmlns(self):
         return self._xmlns

@@ -5,8 +5,6 @@ from pytanga.visitors import NETCONFVisitor
 from pytanga.visitors import VisitorError
 
 
-
-
 class testComponent(AbstractComponent):
 
     def __init__(self, level4=None):
@@ -27,44 +25,45 @@ class testComponent(AbstractComponent):
 
     def setAttributes(self, level4):
         attributes = {}
-        attributes['l1_var1'] = 'var1'
-        attributes['l1_var2'] = 'var2'
-        attributes['l1_var3'] = None
-        attributes['l1_var4'] = {
+        attributes['leaf_l1_var1'] = 'var1'
+        attributes['leaf_l1_var2'] = None
+        attributes['leafList_l1'] = ['l_var1', 'l_var2', 'l_var3']
+        attributes['leaf_withKey_l1'] = {
             'keys': {
-                'attr_key' : "value"
+                'attr_key': "value"
             },
-            'value' : 'var4'
+            'value': 'var4'
         }
         attributes['level2'] = {
-            'l2_var1': 'l2_var1',
-            'l2_var2': 'l2_var2',
-            'l2_var3': None,
-            'l2_var4': {
+            'leaf_l2_var1': 'l2_var1',
+            'leaf_l2_var2': None,
+            'leafList_l2': ['l_var1', 'l_var2', 'l_var3'],
+            'leaf_withKey_l2': {
                 'keys': {
                     'testkey': "value"
                 },
-                'value' : 'var4'
+                'value': 'var4'
             }
         }
         attributes['level3'] = {
             'level3': {
-                'l3_var1': 'l3_var1',
-                'l3_var2' : None,
-                'l3_var3' : {
-                    'keys' : {
-                        'l3_key' : 'key',
+                'leaf_l3_var1': 'l3_var1',
+                'leaf_l3_var2': None,
+                'leafList_l3': ['l_var1', 'l_var2', 'l_var3'],
+                'leaf_withKey_l3_var3': {
+                    'keys': {
+                        'l3_key': 'key',
                     },
-                    'value' : 'var3'
+                    'value': 'var3'
                 }
             }
         }
         if(level4):
             attributes['level1'] = {
-                'level2' : {
-                    'level3' : {
-                        'level4' : {
-                            'attr' : 'value'
+                'level2': {
+                    'level3': {
+                        'level4': {
+                            'attr': 'value'
                         }
                     }
                 }
@@ -93,6 +92,7 @@ class testComponent(AbstractComponent):
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 
+
 class NETCONFVisitorTest(unittest.TestCase):
 
     def test_NETCONFVisitor(self):
@@ -100,11 +100,11 @@ class NETCONFVisitorTest(unittest.TestCase):
         serializer = NETCONFVisitor()
         output = Component.parse(serializer)
         xml_string = serializer.print(output)
-        teststring= '<test><l1_var1>var1</l1_var1><l1_var2>var2</l1_var2><l1_var3 /><l1_var4 attr_key="value">var4</l1_var4><level2><l2_var1>l2_var1</l2_var1><l2_var2>l2_var2</l2_var2><l2_var3 /><l2_var4 testkey="value">var4</l2_var4></level2><level3><level3><l3_var1>l3_var1</l3_var1><l3_var2 /><l3_var3 l3_key="key">var3</l3_var3></level3></level3></test>'
-        self.assertEqual(xml_string, teststring )
-
+        teststring = '<test><leaf_l1_var1>var1</leaf_l1_var1><leaf_l1_var2 /><leafList_l1>l_var1</leafList_l1><leafList_l1>l_var2</leafList_l1><leafList_l1>l_var3</leafList_l1><leaf_withKey_l1 attr_key="value">var4</leaf_withKey_l1><level2><leaf_l2_var1>l2_var1</leaf_l2_var1><leaf_l2_var2 /><leafList_l2>var4</leafList_l2><leafList_l2>var4</leafList_l2><leafList_l2>var4</leafList_l2><leaf_withKey_l2 testkey="value">var4</leaf_withKey_l2></level2><level3><level3><leaf_l3_var1>l3_var1</leaf_l3_var1><leaf_l3_var2 /><leafList_l3>l_var1</leafList_l3><leafList_l3>l_var2</leafList_l3><leafList_l3>l_var3</leafList_l3><leaf_withKey_l3_var3 l3_key="key">var3</leaf_withKey_l3_var3></level3></level3></test>'
+        self.assertEqual(xml_string, teststring)
 
     def test_NETCONFException(self):
-        Component = testComponent(level4 = True)
+        Component = testComponent(level4=True)
         serializer = NETCONFVisitor()
-        self.assertRaises(VisitorError, Component.parse , serializer)
+        self.assertRaises(VisitorError, Component.parse, serializer)
+

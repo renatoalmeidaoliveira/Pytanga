@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class prefixeslistsComponent(AbstractComponent):
 
     def __init__(self , sequence_number= None, operation=None):
@@ -10,8 +11,7 @@ class prefixeslistsComponent(AbstractComponent):
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
-        self.tag = 'prefix-list'
-        
+        self.tag = 'prefix-list'  
 
     @property
     def xmlns(self):

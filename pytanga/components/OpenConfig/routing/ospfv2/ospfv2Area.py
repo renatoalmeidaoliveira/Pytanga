@@ -24,10 +24,9 @@ class ospfv2AreaComponent(AbstractComponent):
 
     def setAttributes(self, identifier):
         atributes = {
-            'identifier' : str(identifier)
+            'identifier': str(identifier)
         }
         return atributes
-
 
     def add(self, component) -> None:
         self._children.append(component)

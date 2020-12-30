@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class addressFamilyIPv4UnicastComponent(AbstractComponent):
 
     def __init__(self,
@@ -38,11 +39,11 @@ class addressFamilyIPv4UnicastComponent(AbstractComponent):
         if(auto_summary):
             attributes['auto-summary'] = None
         if(originate_default):
-            attributes['default-information'] = { 'originate' : None }
+            attributes['default-information'] = {'originate': None}
         if(synchronization):
             attributes['synchronization'] = None
         if(segment_routing_mpls):
-            attributes['segment-routing'] = { 'mpls' : None}
+            attributes['segment-routing'] = {'mpls': None}
         return attributes
 
     def add(self, component) -> None:

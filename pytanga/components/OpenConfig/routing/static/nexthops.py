@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class nexthopsComponent(AbstractComponent):
 
     def __init__(self):
@@ -10,7 +11,6 @@ class nexthopsComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'next-hops'
 
-
     @property
     def xmlns(self):
         return self._xmlns
@@ -18,7 +18,6 @@ class nexthopsComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -38,7 +37,7 @@ class nexthopsComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 

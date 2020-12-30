@@ -9,6 +9,7 @@ This module defines the config Component.
 """
 from . import AbstractComponent
 
+
 class configComponent(AbstractComponent):
 
     def __init__(self):
@@ -19,7 +20,6 @@ class configComponent(AbstractComponent):
         self.childrenData = []
         self.tag = 'config'
 
-
     @property
     def xmlns(self):
         return self._xmlns
@@ -27,7 +27,6 @@ class configComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -47,6 +46,6 @@ class configComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)

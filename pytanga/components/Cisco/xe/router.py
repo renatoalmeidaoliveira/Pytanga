@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class routerComponent(AbstractComponent):
 
     def __init__(self, operation=None):
@@ -11,7 +12,6 @@ class routerComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'router'
-
 
     @property
     def xmlns(self):

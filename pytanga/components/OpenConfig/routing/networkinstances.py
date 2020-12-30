@@ -1,17 +1,17 @@
 from pytanga.components import AbstractComponent
 
+
 class networkInstancesComponent(AbstractComponent):
 
     def __init__(self):
         self._xmlns = {
-            'xmlns' : 'http://openconfig.net/yang/network-instance',
+            'xmlns': 'http://openconfig.net/yang/network-instance',
         }
         self.attributes = {}
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'network-instances'
-
 
     @property
     def xmlns(self):
@@ -20,7 +20,6 @@ class networkInstancesComponent(AbstractComponent):
     @xmlns.setter
     def xmlns(self, xmlns):
         self._xmlns = xmlns
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -40,6 +39,6 @@ class networkInstancesComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)

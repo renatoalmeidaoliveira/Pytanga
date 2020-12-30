@@ -135,8 +135,8 @@ class neighborComponent(AbstractComponent):
                       weight
                       ):
         attributes = {}
-        if( not ((address and not name) or (not address and name))):
-            if((address == None and name == None )):
+        if(not ((address and not name) or (not address and name))):
+            if((address in None and name is None)):
                 raise neighborSyntaxError(
                       "name or address must be defined")
             else:

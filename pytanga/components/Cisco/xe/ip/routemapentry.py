@@ -17,11 +17,11 @@ class routemapentryComponent(AbstractComponent):
         self.parent_xmlns = {}
         self._children: List[AbstractComponent] = []
         self.childrenData = []
-        if(seq_no == None and ordering_seq == None):
+        if(seq_no is None and ordering_seq is None):
             self.tag = 'route-map-without-order-seq'
-        elif(ordering_seq == None and seq_no is not None):
+        elif(ordering_seq is None and seq_no is not None):
             self.tag = 'route-map-without-order-seq'
-        elif(seq_no == None and ordering_seq is not None):
+        elif(seq_no is None and ordering_seq is not None):
             self.tag = 'route-map-seq'
         else:
             routemapSyntaxError(

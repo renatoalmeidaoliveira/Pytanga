@@ -1,5 +1,6 @@
 from pytanga.components import AbstractComponent
 
+
 class interfacerefComponent(AbstractComponent):
 
     def __init__(self, interface=None, subinterface=None):
@@ -9,7 +10,6 @@ class interfacerefComponent(AbstractComponent):
         self._children: List[AbstractComponent] = []
         self.childrenData = []
         self.tag = 'interface-ref'
-
 
     @property
     def xmlns(self):
@@ -25,11 +25,10 @@ class interfacerefComponent(AbstractComponent):
         if(interface):
             attributes['config']['interface'] = interface
         if(subinterface):
-            attributes['config']['subinterface'] = subinterface 
+            attributes['config']['subinterface'] = subinterface
         if(attributes['config'] == {}):
             del attributes['config']
         return attributes
-
 
     def add(self, component) -> None:
         self._children.append(component)
@@ -49,7 +48,7 @@ class interfacerefComponent(AbstractComponent):
     def parse(self, serializer):
         self.childrenData = []
         self.getXMLNS()
-        for child in  self._children:
+        for child in self._children:
             self.childrenData.append(child.parse(serializer))
         return serializer.parse(self)
 
