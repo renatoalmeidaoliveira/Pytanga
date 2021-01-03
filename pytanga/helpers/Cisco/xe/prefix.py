@@ -27,16 +27,16 @@ class ConfigurePrefixList():
                  step=5,):
 
         self.prefixLists = prefixeslistsComponent()
-        operation=None
+        operation = None
         if(replace):
-            operation='replace'
+            operation = 'replace'
         self.prefixlist = prefixlistComponent(name=name, operation=operation)
         self.prefixLists.add(self.prefixlist)
         self.step = step
         self.position = step
         self.prefixes = {}
 
-    def addPrefix(self, action, network, seq=None):
+    def addPrefix(self, action, network, seq=None, le=None, ge=None):
         """
         Add a prefix to the prefix List
 
@@ -52,8 +52,16 @@ class ConfigurePrefixList():
         if(action not in ["permit", "deny"]):
             raise ConfigurePrefixListError("Incorrect Action")
         if((network not in self.prefixes.keys()) and (seq is None)):
-            prefix = prefixComponent(
-                seq=self.position, action=action, network=network)
+            args = {
+                'seq': self.position,
+                'action': action,
+                'network': network
+            }
+            if(le):
+                args['le'] = str(le)
+            if(ge):
+                args['ge'] = str(ge)
+            prefix = prefixComponent(**args)
             self.position = self.position + self.step
             self.prefixes[network] = prefix
             self.prefixes[self.position] = prefix
@@ -62,8 +70,16 @@ class ConfigurePrefixList():
             raise ConfigurePrefixListError("Network already configured")
         if(seq is not None):
             if((seq not in self.prefixes) and (network not in self.prefixes)):
-                prefix = prefixComponent(
-                    seq=seq, action=action, network=network)
+                args = {
+                    'seq': seq,
+                    'action': action,
+                    'network': network
+                }
+                if(le):
+                    args['le'] = str(le)
+                if(ge):
+                    args['ge'] = str(ge)
+                prefix = prefixComponent(**args)
                 self.prefixes[network] = prefix
                 self.prefixes[seq] = prefix
                 self.prefixlist.add(prefix)

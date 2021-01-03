@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pytanga", # Replace with your own username
-    version="1.0.3",
+    version="1.0.4",
     author="Renato Almeida de Oliveira",
     author_email="renato.almeida.oliveira@gmail.com",
     description="Python Library to simplify NETCONF payload creation",
